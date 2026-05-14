@@ -153,6 +153,7 @@ void Rhombus::Dump()
 
     cout << "  Figure area:         " << GetArea() << endl;
     cout << "  Figure perimeter:    " << GetPerimeter() << endl;
+    cout << "  Rhombus Side:        " << GetSide() << endl;
     cout << "  Text:                " << (text ? text : "(null)") << endl;
     cout << endl;
 

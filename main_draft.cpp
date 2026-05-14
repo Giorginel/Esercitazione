@@ -36,9 +36,11 @@ int main()
 
     cout << endl << "===== TEST DISTRUTTORI =====" << endl;
 
-    delete shapes[0];
-    delete shapes[1];
-   
+    for (int i = 0; i < nShapes; i++) {
+        cout << endl << "Figura [" << i << "]" << endl;
+        delete shapes[i];
+    }
+    
 
     cout << endl << "===== FINE TEST =====" << endl;
 

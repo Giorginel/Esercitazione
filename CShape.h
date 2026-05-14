@@ -34,7 +34,7 @@ public:
     Shape(float px, float py, float w, float h);
     Shape(const Shape &r);
 
-    ~Shape();
+    virtual ~Shape();
     /// @}
 
 
@@ -49,7 +49,7 @@ public:
     /// @{
     void Init();
     void Init(const Shape &r);
-    virtual void Reset();
+    void Reset();
     /// @}
 	
 	/// @name FOMATTING

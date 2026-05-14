@@ -38,7 +38,6 @@ Rectangle::Rectangle(const Rectangle &r) : Shape(r)
 /// @brief destructor
 Rectangle::~Rectangle()
 {   
-
     cout << "Rectangle - destructor" << endl;
 }
 
@@ -134,7 +133,6 @@ void Rectangle::Dump()
 	
 	Shape::Dump();
 	
-    
     cout << "  Figure area:         " << GetArea() << endl;
     cout << "  Figure perimeter:    " << GetPerimeter() << endl;
     cout << "  Text:                " << (text ? text : "(null)") << endl;
