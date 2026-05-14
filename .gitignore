@@ -1,0 +1,12 @@
+compiler
+
+# Doxygen output
+docs/
+html/
+latex/
+
+*.exe
+*.out
+.vscode/
+
+
