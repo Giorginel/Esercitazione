@@ -34,7 +34,11 @@ int main()
         shapes[i]->Dump();
     }
 
-    
+    cout << endl << "===== TEST DISTRUTTORI =====" << endl;
+
+    delete shapes[0];
+    delete shapes[1];
+   
 
     cout << endl << "===== FINE TEST =====" << endl;
 

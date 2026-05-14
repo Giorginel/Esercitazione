@@ -1,6 +1,6 @@
 /*! \file CRectangle.h
     \brief Declaration of the class Rectangle
-    \author Paolo Gastaldo
+    \author Giorgio Cirjan, Adama Diakhite
 */
 
 #ifndef RECTANGLE_H
@@ -46,7 +46,7 @@ public:
 
     /// @name DEBUG and SERIALIZATION
     /// @{
-    virtual void Dump();
+    void Dump();
     /// @}
 };
 

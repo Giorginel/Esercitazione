@@ -1,6 +1,6 @@
 /*! \file CShape.h
     \brief Declaration of the base class Shape
-	\author Paolo Gastaldo
+	\author Giorgio Cirjan, Adama Diakhite
 */
 
 #ifndef SHAPE_H
@@ -49,7 +49,7 @@ public:
     /// @{
     void Init();
     void Init(const Shape &r);
-    void Reset();
+    virtual void Reset();
     /// @}
 	
 	/// @name FOMATTING

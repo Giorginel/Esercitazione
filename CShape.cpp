@@ -1,6 +1,6 @@
 /*! \file CShape.h
     \brief implementation of class Shape
-	\author Paolo Gastaldo
+	\author Giorgio Cirjan, Adama Diakhite
 */
 
 #include "CShape.h"

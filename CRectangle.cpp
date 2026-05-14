@@ -1,6 +1,6 @@
 /*! \file CRectangle.cpp
     \brief implementation of class Rectangle
-    \author Paolo Gastaldo
+    \author Giorgio Cirjan, Adama Diakhite
 */
 
 #include "CRectangle.h"
@@ -37,7 +37,8 @@ Rectangle::Rectangle(const Rectangle &r) : Shape(r)
 
 /// @brief destructor
 Rectangle::~Rectangle()
-{
+{   
+
     cout << "Rectangle - destructor" << endl;
 }
 
