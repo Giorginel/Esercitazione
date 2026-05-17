@@ -29,7 +29,7 @@ static void SafeStrCopy(char* dest, const char* src, size_t destSize) {
 Shape::Shape()
 {
 	
-	cout << "Shape - default constructor" << endl;
+	cout << endl << "Shape - default constructor" << endl;
 	
 	text = nullptr;
     Init();
@@ -42,7 +42,7 @@ Shape::Shape()
 /// @param h height of the bounding box
 Shape::Shape(float px, float py, float w, float h)
 {
-	cout << "Shape - constructor" << endl;
+	cout << endl << "Shape - constructor" << endl;
 	
 	text = nullptr;
     Init();
@@ -182,7 +182,8 @@ void Shape::Reset()
    
 void Shape::Scale(float sf) 
 {
-	// TO DO
+	height = height*sf;
+    width  = width*sf;
 }
 
 /* ----------------------------
