@@ -46,6 +46,9 @@ int main()
     shapes[0]->Scale(0.8);
     shapes[0]->Dump();
 
+    shapes[1]->Scale(-0.5);
+    shapes[1]->Dump();
+
 
     cout << endl << "===== TEST OPERATORI =====" << endl;
 
