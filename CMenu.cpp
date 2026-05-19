@@ -17,33 +17,32 @@ using namespace std;
 #define PIXELS_DIMENSIONS 100
 
 
-void viewPoli(Shape* shapes[], int &nShapes);
-void modifyPoli();
-void movePoli();
-void newPoli(Shape* shapes[], int &nShapes);
-void deletePoli(Shape* shapes[], int &nShapes);
-void deleteAllPolis();
+void viewAllShapes(Shape* shapes[], int &nShapes);
+void modifyShapes();
+void moveShapes();
+void newShapes(Shape* shapes[], int &nShapes);
+void deleteShapes(Shape* shapes[], int &nShapes);
+void deleteAllShapes();
 
-int getChoisePoli();
-int getChoiseMenu();
+int getChoiceShape();
+int getChoiceMenu();
 void getUserParametri(float &px, float &py, float &w, float &h);
 void getUserText(char* string);
 
 int main()
 {
-    
     Shape* shapes[MAX_SHAPES];
     int nShapes = 0;
 
-    int choise = 99;
+    int choice = 99;
 
-    while (choise != 0)
+    while (choice != 0)
     {
-        choise = getChoiseMenu(); 
-        switch (choise)
+        choice = getChoiceMenu(); 
+        switch (choice)
         {
         case 1:
-            viewPoli(shapes, nShapes);
+            viewAllShapes(shapes, nShapes);
             break;
         case 2:
             /* code */
@@ -52,7 +51,7 @@ int main()
             /* code */
             break;
         case 4:
-            newPoli(shapes, nShapes); 
+            newShapes(shapes, nShapes); 
             break;
         case 5:
             /* code */
@@ -69,9 +68,12 @@ int main()
         }
     }
     
+
+
+    cout << endl << "Fine programma" << endl;
 }
 
-void viewPoli(Shape* shapes[], int &nShapes){
+void viewAllShapes(Shape* shapes[], int &nShapes){
     if (nShapes == 0)
     {
         cout << endl << "Attualmente non ci sono figure" << endl;
@@ -85,11 +87,11 @@ void viewPoli(Shape* shapes[], int &nShapes){
     }
     
 }
-void modifyPoli();
-void movePoli();
-void newPoli(Shape* shapes[], int &nShapes){
+void modifyShapes();
+void moveShapes();
+void newShapes(Shape* shapes[], int &nShapes){
 
-    int choise = getChoisePoli(); 
+    int choice = getChoiceShape(); 
 
     float px = 0.0;
     float py = 0.0;
@@ -104,7 +106,7 @@ void newPoli(Shape* shapes[], int &nShapes){
     
     
 
-    switch (choise)
+    switch (choice)
     {
     case 1:
         shapes[nShapes] = new Rectangle(px, py, w, h);
@@ -125,49 +127,63 @@ void newPoli(Shape* shapes[], int &nShapes){
 
     nShapes++;
     
-
-    
+}
+void deleteShapes(Shape* shapes[], int &nShapes){
 
 }
-void deletePoli(Shape* shapes[], int &nShapes){
+void deleteAllShapes(){
 
 }
-void deleteAllPolis();
 
-int getChoisePoli(){
+int getChoiceShape(){
     
     int scelta = 0;
 
-    while (scelta < 1 || scelta > 3) //da aggiustare
+    while (true)
     {
         cout << endl << "Scegli una figura tra quelle valide:" << endl;
-        
         cout << endl << "1 - Rettangolo";
         cout << endl << "2 - Rombo";
         cout << endl << "3 - Triangolo rettangolo"<< endl;
 
         cin >> scelta;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Input non valido"<< endl;
+            continue;
+        }
+
+        if (scelta >= 1 && scelta <= 3)
+            return scelta;
+
+        cout << "Figura non valida\n";
     }
-    return scelta;     
+ 
 }
-int getChoiseMenu(){
+int getChoiceMenu(){
     
-    int scelta = 0;
+    int scelta;
 
-    while (scelta < 1 || scelta > 6) //da aggiustare
-    {
-        cout << endl << "Scegli funzione:" << endl;
-        
-        cout << endl << "1. Visualizzazione dei poligoni esistenti";
-        cout << endl << "2. Modifica delle proprietà di un poligono";
-        cout << endl << "3. Spostamento di un poligono sulla griglia";
-        cout << endl << "4. Inserimento di un nuovo poligono";
-        cout << endl << "5. Cancellazione di un poligono ";
-        cout << endl << "6. Cancellazione di tutti i poligoni"<< endl;
-        
-
-        cin >> scelta;
+    cout << endl << "Scegli una funzione fra queste:" << endl;
+    
+    cout << endl << "1. Visualizzazione delle figure esistenti";
+    cout << endl << "2. Modifica delle proprietà di una figura";
+    cout << endl << "3. Spostamento una figura sulla griglia";
+    cout << endl << "4. Inserimento di una nuova figura";
+    cout << endl << "5. Cancellazione di una figura ";
+    cout << endl << "6. Cancellazione di tutti i poligoni";
+    cout << endl << "0. Exit" << endl;
+    
+    cin >> scelta;
+    if (cin.fail()) {               //errore di cin
+        cin.clear();                // reset stato errore
+        cin.ignore(1000, '\n');     // svuota buffer
+        scelta= 99;                 //cosi quando tornaimo nello switch attiviamo il caso dafault
     }
+
     return scelta;     
 }
 void getUserParametri(float &px, float &py, float &w, float &h){
