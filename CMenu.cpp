@@ -16,7 +16,7 @@ using namespace std;
 #define MAX_SHAPES 10
 #define PIXELS_DIMENSIONS 100
 
-void viewAllShape(Shape* shapes[], int &nShapes);
+void viewAllShapes(Shape* shapes[], int &nShapes);
 void modifyShape(Shape* shapes[], int &nShapes);
 void moveShape(Shape* shapes[], int &nShapes);
 void newShapes(Shape* shapes[], int &nShapes); //da aggiungere controllo bounding box
@@ -255,7 +255,7 @@ int selectShape(Shape* shapes[], int &nShapes){
     } else {
         cout << endl << "Scegli un poligono tra quelli esistenti:" << endl;
         cout << endl;
-        viewShape(shapes, nShapes);
+        newShapes(shapes, nShapes);
 
         cout << "Inserisci l'indice del poligono: ";
         int choice = controlloIntervallo(0, nShapes - 1, "Errore! Indice non valido. Scegli uno dei numeri dell'elenco.");
