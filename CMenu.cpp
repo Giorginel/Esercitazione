@@ -16,19 +16,19 @@ using namespace std;
 #define MAX_SHAPES 10
 #define PIXELS_DIMENSIONS 100
 
-void viewPoli(Shape* shapes[], int &nShapes);
-void modifyPoli(Shape* shapes[], int &nShapes);
-void movePoli(Shape* shapes[], int &nShapes);
-void newPoli(Shape* shapes[], int &nShapes); //da aggiungere controllo bounding box
-void deletePoli(Shape* shapes[], int &nShapes);
-void deleteAllPolis();
+void viewAllShape(Shape* shapes[], int &nShapes);
+void modifyShape(Shape* shapes[], int &nShapes);
+void moveShape(Shape* shapes[], int &nShapes);
+void newShapes(Shape* shapes[], int &nShapes); //da aggiungere controllo bounding box
+void deleteShape(Shape* shapes[], int &nShapes);
+void deleteAllShapes();
 
-int getChoicePoli();
+int getChoiceShape();
 int getChoiceMenu();
 void getUserParametri(float &px, float &py, float &w, float &h);
 void getUserText(char* string);
 bool checkBoundingBox(float px, float py, float w, float h);
-int selectPoli(Shape* shapes[], int &nShapes);
+int selectShape(Shape* shapes[], int &nShapes);
 int controlloIntervallo(int min, int max, const string& messaggioErrore);
 
 int main()
@@ -36,27 +36,27 @@ int main()
     Shape* shapes[MAX_SHAPES];
 
     int nShapes = 0;
-    int Choice = 99;
+    int choice = 99;
 
-    while (Choice != 0)
+    while (choice != 0)
     {
-        Choice = getChoiceMenu(); 
-        switch (Choice)
+        choice = getChoiceMenu(); 
+        switch (choice)
         {
         case 1:
-            viewPoli(shapes, nShapes);
+            viewAllShapes(shapes, nShapes);
             break;
         case 2:
-            modifyPoli(shapes, nShapes);
+            modifyShape(shapes, nShapes);
             break;
         case 3:
-            movePoli(shapes, nShapes);
+            moveShape(shapes, nShapes);
             break;
         case 4:
-            newPoli(shapes, nShapes); 
+            newShapes(shapes, nShapes); 
             break;
         case 5:
-            deletePoli(shapes, nShapes);
+            deleteShape(shapes, nShapes);
             break;
         case 6:
             /* code */
@@ -69,9 +69,11 @@ int main()
             break;
         }
     }
+    
+    cout << endl << "Fine programma" << endl;
 }
 
-void viewPoli(Shape* shapes[], int &nShapes){
+void viewAllShapes(Shape* shapes[], int &nShapes){
     if (nShapes == 0)
     {
         cout << endl << "Attualmente non ci sono figure" << endl;
@@ -84,8 +86,8 @@ void viewPoli(Shape* shapes[], int &nShapes){
     }
     
 }
-void modifyPoli(Shape* shapes[], int &nShapes){
-    int scelta = selectPoli(shapes, nShapes);
+void modifyShape(Shape* shapes[], int &nShapes){
+    int scelta = selectShape(shapes, nShapes);
 
     if (scelta == -1) {
         cout << endl << "Non ci sono figure da modificare" << endl;
@@ -115,8 +117,8 @@ void modifyPoli(Shape* shapes[], int &nShapes){
     cout << endl << "Figura modificata con successo con le nuove dimensioni (" << w << ", " << h << ")" << endl;
 
 }
-void movePoli(Shape* shapes[], int &nShapes){
-    int scelta = selectPoli(shapes, nShapes);
+void moveShape(Shape* shapes[], int &nShapes){
+    int scelta = selectShape(shapes, nShapes);
 
     if (scelta == -1) {
         cout << endl << "Non ci sono figure da spostare" << endl;
@@ -141,9 +143,9 @@ void movePoli(Shape* shapes[], int &nShapes){
 
     cout << endl << "Figura spostata con successo nella posizione (" << px << ", " << py << ")" << endl;
 }
-void newPoli(Shape* shapes[], int &nShapes){
+void newShapes(Shape* shapes[], int &nShapes){
 
-    int Choice = getChoicePoli(); 
+    int choice = getChoiceShape(); 
 
     float px = 0.0;
     float py = 0.0;
@@ -161,7 +163,7 @@ void newPoli(Shape* shapes[], int &nShapes){
     char text[TEXTSIZE];
     getUserText(text);
     
-    switch (Choice)
+    switch (choice)
     {
     case 1:
         shapes[nShapes] = new Rectangle(px, py, w, h);
@@ -178,16 +180,16 @@ void newPoli(Shape* shapes[], int &nShapes){
     }
     nShapes++;
 }
-void deletePoli(Shape* shapes[], int &nShapes){
-    int scelta = selectPoli(shapes, nShapes);
+void deleteShape(Shape* shapes[], int &nShapes){
+    int scelta = selectShape(shapes, nShapes);
 
     if (scelta == -1) {
         cout << endl << "Non ci sono figure da eliminare" << endl;
         return;
     }
 }
-void deleteAllPolis(){}
-int getChoicePoli(){
+void deleteAllShapes(){}
+int getChoiceShape(){
     
     cout << endl << "Scegli una figura tra quelle valide:" << endl;
     cout << endl << "1 - Rettangolo";
@@ -247,17 +249,17 @@ bool checkBoundingBox(float px, float py, float w, float h){
         return true;
     }
 }
-int selectPoli(Shape* shapes[], int &nShapes){
+int selectShape(Shape* shapes[], int &nShapes){
     if (nShapes == 0) {
         return -1; // Nessuna figura disponibile
     } else {
         cout << endl << "Scegli un poligono tra quelli esistenti:" << endl;
         cout << endl;
-        viewPoli(shapes, nShapes);
+        viewShape(shapes, nShapes);
 
         cout << "Inserisci l'indice del poligono: ";
-        int Choice = controlloIntervallo(0, nShapes - 1, "Errore! Indice non valido. Scegli uno dei numeri dell'elenco.");
-        return Choice;
+        int choice = controlloIntervallo(0, nShapes - 1, "Errore! Indice non valido. Scegli uno dei numeri dell'elenco.");
+        return choice;
     }
 }
 int controlloIntervallo(int min, int max, const string& messaggioErrore) {
