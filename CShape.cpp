@@ -182,13 +182,13 @@ void Shape::Reset()
    
 void Shape::Scale(float sf) 
 { 
-    if (sf < 0) {
-        WarningMessage("Scale: the scale value cannot be negative; clamped to 0");
-        sf=0;
+    if (sf <= 0) {
+        ErrorMessage("Scale: the scale value cannot be negative;");
+        return;
     }
     
-	height = height*sqrt(sf);
-    width  = width*sqrt(sf);
+	height = height * sf;
+    width  = width *sf;
 }
 
 /* ----------------------------
