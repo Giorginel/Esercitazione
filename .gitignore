@@ -7,6 +7,5 @@ latex/
 
 *.exe
 *.out
+*.txt
 .vscode/
-
-

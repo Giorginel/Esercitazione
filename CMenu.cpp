@@ -21,7 +21,7 @@ void modifyShape(Shape* shapes[], int &nShapes);
 void moveShape(Shape* shapes[], int &nShapes);
 void newShapes(Shape* shapes[], int &nShapes); //da aggiungere controllo bounding box
 void deleteShape(Shape* shapes[], int &nShapes);
-void deleteAllShapes();
+void deleteAllShapes(Shape* shapes[], int &nShapes);
 
 int getChoiceShape();
 int getChoiceMenu();
@@ -59,7 +59,7 @@ int main()
             deleteShape(shapes, nShapes);
             break;
         case 6:
-            /* code */
+            deleteAllShapes(shapes, nShapes);
             break;
         case 0:
             cout << endl << "Uscita in corso..." << endl;
@@ -128,16 +128,14 @@ void moveShape(Shape* shapes[], int &nShapes){
     int px = 0.0;
     int py = 0.0;
 
-    cout << endl << "Scegli il nuovo punto iniziale della figura:" << endl;
+    cout << endl << "Scegli il nuovo punto figura:" << endl;
     cout << endl << "Inserisci x: ";
     cin >> px;
     cout << endl << "Inserisci y: ";
     cin >> py;
 
-    if (checkBoundingBox(px, py, shapes[scelta]->GetWidth(), shapes[scelta]->GetHeight()) == false)
-    {
-        return;
-    }
+    if (checkBoundingBox(px, py, shapes[scelta]->GetWidth(), shapes[scelta]->GetHeight()) == false) return;
+    
 
     shapes[scelta]->SetPosition(px, py);
 
@@ -180,15 +178,40 @@ void newShapes(Shape* shapes[], int &nShapes){
     }
     nShapes++;
 }
-void deleteShape(Shape* shapes[], int &nShapes){
+
+void deleteShape(Shape* shapes[], int &nShapes)
+{
+    cout<< endl <<"Scegli la figura da eliminare: "<< endl;
     int scelta = selectShape(shapes, nShapes);
 
     if (scelta == -1) {
         cout << endl << "Non ci sono figure da eliminare" << endl;
         return;
     }
+
+    delete shapes[scelta];
+
+    for (int i = scelta; i < nShapes - 1; i++) {
+        shapes[i] = shapes[i + 1];
+    }
+
+    shapes[nShapes - 1] = nullptr; 
+
+    nShapes--;
 }
-void deleteAllShapes(){}
+void deleteAllShapes(Shape* shapes[], int &nShapes){
+    cout<< endl <<"Eliminazione di tutte le shape..."<< endl;
+
+    for (int i = 0; i < nShapes; i++) {
+        cout << endl << "Figura [" << i << "]" << endl;
+        delete shapes[i];
+        shapes[i] = nullptr;
+    }
+    nShapes=0;
+}
+
+
+
 int getChoiceShape(){
     
     cout << endl << "Scegli una figura tra quelle valide:" << endl;
@@ -253,11 +276,11 @@ int selectShape(Shape* shapes[], int &nShapes){
     if (nShapes == 0) {
         return -1; // Nessuna figura disponibile
     } else {
-        cout << endl << "Scegli un poligono tra quelli esistenti:" << endl;
+        cout << endl << "Figure esistenti:" << endl;
         cout << endl;
-        newShapes(shapes, nShapes);
+        viewAllShapes(shapes, nShapes);
 
-        cout << "Inserisci l'indice del poligono: ";
+        cout << "Inserisci l'indice della figura []: ";
         int choice = controlloIntervallo(0, nShapes - 1, "Errore! Indice non valido. Scegli uno dei numeri dell'elenco.");
         return choice;
     }
