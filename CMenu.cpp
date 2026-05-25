@@ -94,8 +94,8 @@ void modifyShape(Shape* shapes[], int &nShapes){
         return;
     }
 
-    int w = 0.0;
-    int h = 0.0;
+    float w = 0.0;
+    float h = 0.0;
 
     cout << endl << "Scegli le nuove dimensioni della figura:" << endl;
     cout << endl << "Inserisci larghezza: ";
@@ -143,6 +143,10 @@ void moveShape(Shape* shapes[], int &nShapes){
 }
 void newShapes(Shape* shapes[], int &nShapes){
 
+    if (nShapes >= MAX_SHAPES) {
+        cout<< endl << "Max figure raggiunte"<< endl;
+        return;
+    }
     int choice = getChoiceShape(); 
 
     float px = 0.0;
